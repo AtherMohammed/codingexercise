@@ -74,3 +74,10 @@ Currently you may see errors sending the report to graphite server as the servic
 
 
 
+Artifacts created :
+------------------
+
+UserDao for DB operations
+User object used as db entity.
+UserResource.java is the service that has all the CRUD data end points.
+User.json sample json document used for testing.
