@@ -1,0 +1,20 @@
+logging:
+  level: INFO
+  loggers:
+    com.brightmd: DEBUG
+
+database:
+  driverClass: org.hsqldb.jdbc.JDBCDriver
+  user: SA
+  url: jdbc:hsqldb:mydatabase;shutdown=true
+  validationQuery: "select 1 from INFORMATION_SCHEMA.SYSTEM_USERS"
+  validationQueryTimeout: 3s
+
+
+metrics:
+  reporters:
+  - type: graphite
+    host: localhost
+    port: 2003
+    prefix: codingexercise # This should be a metric key name / api key name ..
+    frequency: 1m
