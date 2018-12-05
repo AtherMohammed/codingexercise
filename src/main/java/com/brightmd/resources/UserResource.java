@@ -38,10 +38,10 @@ public class UserResource {
     public Response getUser(@PathParam("id") int id) {
         LOGGER.info("User details requested for user with id : {}", id);
         LOGGER.info("Retrieving user with id : {}", id);
-        requests.mark();
         User user = userDao.getUserById(id);
-        metrics.register(MetricRegistry.name(User.class, "userId"),(Gauge<Integer>) () -> user.getId());
-        LOGGER.debug("User :: ", user.toString());
+        if(user == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
         return Response.ok(user ).build();
     }
 

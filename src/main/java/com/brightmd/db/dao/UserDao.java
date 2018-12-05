@@ -16,7 +16,7 @@ public interface UserDao {
     void createUserTable();
 
 
-    @SqlUpdate("drop table user")
+    @SqlUpdate("drop table user IF EXISTS")
     void dropUserTable();
 
     @SqlQuery("select * from user where id = :id")

@@ -3,6 +3,9 @@ package com.brightmd;
 import com.brightmd.db.dao.UserDao;
 import com.brightmd.resources.UserResource;
 import io.dropwizard.Application;
+import io.dropwizard.configuration.EnvironmentVariableSubstitutor;
+import io.dropwizard.configuration.ResourceConfigurationSourceProvider;
+import io.dropwizard.configuration.SubstitutingSourceProvider;
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -27,7 +30,12 @@ public class codingexerciseApplication extends Application<codingexerciseConfigu
 
     @Override
     public void initialize(final Bootstrap<codingexerciseConfiguration> bootstrap) {
-        // TODO: application initialization
+        bootstrap.setConfigurationSourceProvider(
+            new SubstitutingSourceProvider(
+                bootstrap.getConfigurationSourceProvider(),
+                new EnvironmentVariableSubstitutor(false)
+            )
+        );
 
     }
 
