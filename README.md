@@ -1,5 +1,33 @@
 # codingexercise
 
+Implementation requirements:
+----------------------------
+
+Create a drop-wizard service with the following:
+
+
+A User rest Resource that allows clients to create, read, update, delete a user or list all users. 
+
+You can use JDBI3 with a database of your choice but it's also fine to just use a Map<String, User> in memory to keep track of users by their ids. 
+
+Make use of logging and metrics in the resource. 
+
+Write unit tests for the service. 
+
+Use the jacoco-maven-plugin for unit test coverage. Or whatever, you can also use gradle if you prefer that to maven.
+
+See: https://www.dropwizard.io/1.3.5/docs/getting-started.html
+
+The user JSON can just be id, first name, last name, zip code, and email address. Extra points if the User class is immutable.
+
+
+
+
+Implementation guide :
+----------------------
+
+All efforts have been made to implement everything as mentioned in the above guidelines.
+
 clone the repository from : 
 
 https://github.com/AtherMohammed/codingexercise.git
@@ -30,11 +58,15 @@ Retrieve the stored user using the get api:
 curl -H "Content-Type:application/json" -X GET "http://localhost:8080/profiles/users/<userId>" -i
 
 Update operation can be performed using below command
-curl -H "Content-Type:application/json" -X PUT "http://localhost:8080/profiles/users/1" -d '{"id": "1", "firstName": "AtherHussain", "lastName": "mohammedTest", "zipcode": "97078", "emailaddress": "hussainmoha@gmail.com"}' -i
+curl -H "Content-Type:application/json" -X PUT "http://localhost:8080/profiles/users/id" -d '{"id": "1", "firstName": "AtherHussain", "lastName": "mohammedTest", "zipcode": "97078", "emailaddress": "hussainmoha@gmail.com"}' -i
+
 
 Delete can be performed by below rest call :
 curl -H "Content-Type:application/json" -X DELETE "http://localhost:8080/profiles/users/<userid>" -i
 
+
+Metrics
+--------
 
 There are annotations used on the GET endpoint on UserResource.java to record the metrics that can be used to send the report to the 
 graphite server if available. Modify the config.yml file  to point the graphite server port and address.
